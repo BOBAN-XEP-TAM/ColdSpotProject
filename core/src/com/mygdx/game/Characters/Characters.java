@@ -15,6 +15,10 @@ public abstract class Characters extends GraphicsObj {
         this.speed = speed;
         direction = new Vector2(0,0);
     }
-    public void setDirection(Vector2 dir){direction = dir;}
+    public Characters(Sprite img, Vector2 position) {
+        super(img);
+        this.position = new Vector2(position);
+        direction = new Vector2(0,0);
+    }
 
 }

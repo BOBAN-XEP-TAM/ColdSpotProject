@@ -1,8 +1,8 @@
-com.mygdx.game.android-pngs-0 D:\libgdx\demo\android\build\generated\res\pngs\debug
-com.mygdx.game.android-resValues-1 D:\libgdx\demo\android\build\generated\res\resValues\debug
-com.mygdx.game.android-rs-2 D:\libgdx\demo\android\build\generated\res\rs\debug
-com.mygdx.game.android-mergeDebugResources-3 D:\libgdx\demo\android\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
-com.mygdx.game.android-mergeDebugResources-4 D:\libgdx\demo\android\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-com.mygdx.game.android-merged_res-5 D:\libgdx\demo\android\build\intermediates\merged_res\debug
-com.mygdx.game.android-android-6 D:\libgdx\demo\android\res
-com.mygdx.game.android-debug-7 D:\libgdx\demo\android\src\debug\res
+com.mygdx.game.android-pngs-0 D:\libgdx\demoNew\android\build\generated\res\pngs\debug
+com.mygdx.game.android-resValues-1 D:\libgdx\demoNew\android\build\generated\res\resValues\debug
+com.mygdx.game.android-rs-2 D:\libgdx\demoNew\android\build\generated\res\rs\debug
+com.mygdx.game.android-mergeDebugResources-3 D:\libgdx\demoNew\android\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.mygdx.game.android-mergeDebugResources-4 D:\libgdx\demoNew\android\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.mygdx.game.android-merged_res-5 D:\libgdx\demoNew\android\build\intermediates\merged_res\debug
+com.mygdx.game.android-android-6 D:\libgdx\demoNew\android\res
+com.mygdx.game.android-debug-7 D:\libgdx\demoNew\android\src\debug\res

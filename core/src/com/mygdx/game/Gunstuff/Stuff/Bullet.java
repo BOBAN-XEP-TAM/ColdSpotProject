@@ -1,67 +1,67 @@
 package com.mygdx.game.Gunstuff.Stuff;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import static com.mygdx.game.Main.BIT_BULLET;
+import static com.mygdx.game.Main.BIT_ENEMY;
+import static com.mygdx.game.Main.BIT_PLAYER;
+import static com.mygdx.game.Main.BIT_WALL;
+import static com.mygdx.game.Main.PPM;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.mygdx.game.Characters.Characters;
-import com.mygdx.game.Main;
-import com.mygdx.game.Screens.GameScreen;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 
-//public class Bullets extends Characters {
-//    public boolean isOut;
-//
-//    public Bullets(Sprite img, Vector2 position, int speed, Vector2 direction) {
-//        super(img, position, speed);
-//        this.direction = new Vector2(direction);
-//    }
-//
-//    @Override
-//    public void draw(SpriteBatch batch) {
-////        img.setRotation(GameScreen.angle);
-////        img.setPosition(position.x, position.y);
-////        img.setRegionWidth(50);
-////        img.setRegionHeight(50);
-////        img.draw(batch);
-//        batch.draw(img, position.x, position.y, 50, 50);
-//    }
-//
-//    @Override
-//    public void update() {
-//        position.add(direction.x * speed, direction.y * speed);
-//        img.setPosition(position.x, position.y);
-//    }
-//}
-public class Bullets
+public class Bullet
 {
     public Vector2 position = new Vector2();
+    public Vector2 firstPosition = new Vector2();
     public Vector2 direction = new Vector2();
     public int speed, size;
-    public Rectangle bounds;
-    public boolean isOut;
-    //public Texture img;
+    public Body body;
 
-    public Bullets(Vector2 position, Vector2 direction, int speed, int size)
+    public Bullet(Vector2 position, Vector2 direction, int speed, int size, World world)
     {
         //this.img = img;
         this.speed = speed;
         this.position.set(position);
+        firstPosition.set(position);
         this.direction.set(direction);
         this.size = size;
-        bounds = new Rectangle(position.x, position.y, size, size);
-
+        body = createCircleBody(world, position.x, position.y, size);
     }
 
 //    public void draw(SpriteBatch batch) {
 //        batch.draw(img, position.x, position.y, 56, 17);
 //    }
     public void update() {
-//        isOut = ((position.x + GameScreen.player.img.getWidth() > Main.WIDTH) || (position.x - GameScreen.player.img.getWidth() < Main.WIDTH)
-//        || (position.y + GameScreen.player.img.getHeight() > Main.WIDTH) || (position.y + GameScreen.player.img.getHeight() < Main.WIDTH))  ? true : false;
-        //sprite.setPosition(position.x, position.y);
-        position.add(direction.x * speed, direction.y * speed);
-       bounds.setPosition(position);
+       position.add(direction.x * speed, direction.y * speed);
+       body.setLinearVelocity(direction.x * speed, direction.y * speed);
+    }
+    private Body createCircleBody(World world, float x, float y, float radius) {
+        Body pBody;
+        BodyDef def = new BodyDef();
+
+        def.type = BodyDef.BodyType.DynamicBody;
+
+        def.position.set(x / PPM, y / PPM);
+        def.fixedRotation = true;
+        pBody = world.createBody(def);
+
+        CircleShape shape = new CircleShape();
+        shape.setRadius(radius / PPM);
+
+        FixtureDef fd = new FixtureDef();
+        fd.shape = shape;
+        fd.density = 1.0f;
+        fd.filter.categoryBits = BIT_BULLET;
+        fd.filter.maskBits = BIT_PLAYER | BIT_ENEMY | BIT_WALL;
+        fd.filter.groupIndex = 1;
+        pBody.createFixture(fd);
+        pBody.setUserData("bullet");
+        shape.dispose();
+        return pBody;
     }
 }

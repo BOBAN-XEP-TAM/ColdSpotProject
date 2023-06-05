@@ -1,4 +1,4 @@
-package com.mygdx.game.UI;
+package com.mygdx.game.UI.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -12,15 +12,14 @@ public class Text extends Actor {
     private BitmapFont text;
     private CharSequence str;
     private float x, y;
-    public Text(String path, CharSequence str, float x, float y) {
-        this.str = str;
+    public Text(String path, float x, float y) {
         this.y = y;
         this.x = x;
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(path));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 80;
         text = generator.generateFont(parameter);
-        text.setColor(Color.BLACK);
+        text.setColor(Color.WHITE);
         generator.dispose();
     }
 
@@ -38,8 +37,8 @@ public class Text extends Actor {
         return x;
     }
 
-    public void update(Player pl) {
-        str = String.valueOf(pl.gun.ammo);
+    public void update(int ammo) {
+        str = String.valueOf(ammo);
     }
 
 }

@@ -1,0 +1,4 @@
+#Mon Jun 05 13:50:05 GMT-02:00 2023
+base.0=D\:\\libgdx\\demoNew\\android\\build\\intermediates\\dex\\debugAndroidTest\\mergeDexDebugAndroidTest\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

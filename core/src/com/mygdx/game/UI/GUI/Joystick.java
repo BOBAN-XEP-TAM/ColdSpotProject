@@ -1,12 +1,14 @@
 package com.mygdx.game.UI.GUI;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Grip extends Actor{
+public class Joystick extends Actor{
     private Texture circleImg, stickImg;
     public Circle circleBounds, stickBounds;
     private float rCircle, rStick;
@@ -15,7 +17,7 @@ public class Grip extends Actor{
     public Vector2 position;
 
 
-    public Grip(Texture cimg, Texture simg, Vector2 point, int size) {
+    public Joystick(Texture cimg, Texture simg, Vector2 point, int size) {
         position = point;
         circleImg = cimg;
         stickImg = simg;
@@ -25,6 +27,8 @@ public class Grip extends Actor{
         stickBounds = new Circle(point, rStick);
         direction = new Vector2(0,0);
     }
+
+
     public void draw(Batch batch, float alpha) {
         batch.draw(circleImg, (circleBounds.x - rCircle), (circleBounds.y - rCircle), rCircle * 2, rCircle * 2);
         batch.draw(stickImg, (stickBounds.x - rStick + 9), (stickBounds.y - rStick + 8), rStick * 2, rStick * 2);
