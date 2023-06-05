@@ -1,18 +1,22 @@
-package com.mygdx.game.Controls;
+package com.mygdx.game.UI.GUI;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
-public class Grip{
-    Texture circleImg, stickImg;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
+public class Grip extends Actor{
+    private Texture circleImg, stickImg;
     public Circle circleBounds, stickBounds;
-    public float rCircle, rStick;
+    private float rCircle, rStick;
     public Vector2 direction;
     private int pointer = -1;
+    public Vector2 position;
 
 
     public Grip(Texture cimg, Texture simg, Vector2 point, int size) {
+        position = point;
         circleImg = cimg;
         stickImg = simg;
         rCircle = size / 2;
@@ -21,9 +25,9 @@ public class Grip{
         stickBounds = new Circle(point, rStick);
         direction = new Vector2(0,0);
     }
-    public void draw(SpriteBatch batch) {
-        batch.draw(circleImg, circleBounds.x - rCircle, circleBounds.y - rCircle, rCircle * 2, rCircle * 2);
-        batch.draw(stickImg, stickBounds.x - rStick + 9, stickBounds.y - rStick + 8, rStick * 2, rStick * 2);
+    public void draw(Batch batch, float alpha) {
+        batch.draw(circleImg, (circleBounds.x - rCircle), (circleBounds.y - rCircle), rCircle * 2, rCircle * 2);
+        batch.draw(stickImg, (stickBounds.x - rStick + 9), (stickBounds.y - rStick + 8), rStick * 2, rStick * 2);
     }
 
     public void update(float x, float y, boolean isDownTouched, int pointer) {
